@@ -3,9 +3,7 @@ FROM python:3.9-slim
 WORKDIR /app
 COPY . .
 
-CMD ["uvicorn", "main:app", "--host", "0.0.0.0", "--port", "8000"]
-
-
+RUN pip install flask prometheus_client jaeger-client opentracing-instrumentation
 
 EXPOSE 5000
 
