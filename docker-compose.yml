@@ -2,11 +2,12 @@ version: "3.8"
 
 services:
   app:
-    build: .
+    build: ./app
     ports:
       - "8000:8000"
-    command: ["uvicorn", "main:app", "--host", "0.0.0.0", "--port", "8000"]
-
+    volumes:
+      - ./app:/app
+    command: uvicorn app:app --host 0.0.0.0 --port 8000
 
   prometheus:
     image: prom/prometheus
@@ -41,3 +42,4 @@ services:
     volumes:
       - ./grafana/dashboards:/var/lib/grafana/dashboards
       - ./grafana/provisioning:/etc/grafana/provisioning
+  
